@@ -36,7 +36,8 @@ class AuthProvider extends Component {
             prevState.likes[isLike ? "add" : "delete"](postId);
         });
         await postsStore.doc(postId).update({
-            likesCounter: FieldValue.increment(isLike ? 1 : -1) // запретить увеличивать на единицу, если likes содержит this.props.id
+            likesCounter: FieldValue.increment(isLike ? 1 : -1)
+            // запретить менять (в конфиге БД), в зависимости от того содержит ли likes postId
         })
         await usersStore.doc(this.state.currentUser.uid).update({
             likes: FieldValue[isLike ? "arrayUnion" : "arrayRemove"](postId)

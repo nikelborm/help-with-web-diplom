@@ -45,6 +45,8 @@ class SpecificPostPage extends Component {
     }
     render() {
         const { isExists, isDownloading, preview, id, ...post } = this.state;
+        // this.props
+        console.log('this.props: ', this.props.location.search);
         return (<>
             <a href="#" onClick={ this.props.history.goBack } className="topage"> Вернуться </a>
             <div className="container">

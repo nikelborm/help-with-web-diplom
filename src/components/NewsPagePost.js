@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { postsStore, postsBodysStore } from "../firebase";
 import { AuthContext } from "./Auth";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Post from "./Post";
 
 class NewsPagePost extends Component {
@@ -17,7 +17,9 @@ class NewsPagePost extends Component {
         }
     };
     onClickEditBtn = (event) => {
-
+        event.preventDefault();
+        // this.props.history
+        console.log('this.props.history: ', this.props.history);
     }
     render() {
         const { id } = this.props;
@@ -39,4 +41,4 @@ class NewsPagePost extends Component {
         );
     }
 }
-export default NewsPagePost;
+export default withRouter(NewsPagePost);

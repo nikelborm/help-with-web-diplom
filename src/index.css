@@ -43,8 +43,7 @@ body {
 }
 .moved-time {
     position: relative;
-    /* left: -60px; */
-    left: -35px;
+    left: -60px;
 }
 .topage {
     display: inline-block;

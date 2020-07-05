@@ -10,6 +10,16 @@ class Post extends Component {
     state = {
         isLikeStateChanging: false
     }
+    nothingDo = () => {};
+    convertTime = function (date) {
+        return new Intl.DateTimeFormat("ru", {
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            timeZone: "Europe/Moscow"
+        }).format(date);
+    };
     onClickLikeBtn = async (event) => {
         event.preventDefault();
         this.setState({
@@ -28,16 +38,7 @@ class Post extends Component {
             isLikeStateChanging: false
         });
     };
-    nothingDo = () => {};
-    convertTime = function (date) {
-        return new Intl.DateTimeFormat("ru", {
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            timeZone: "Europe/Moscow"
-        }).format(date);
-    }
+    bla = () => console.log("------------------------------------------------------------------");
     render() {
         const { title, time, updatedTime, likesCounter, children } = this.props;
         const isAutorized =  !!this.context.currentUser;

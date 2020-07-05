@@ -7,10 +7,10 @@ class Menu extends Component {
     constructor(props) {
         super(props);
 
-        const logout = <Link to="/logout"> Выйти из аккаунта...</Link>;
-        const register = isRegistrationAllowed && <Link to="/register">Создать аккаунт...</Link>;
-        const login = <Link to="/login">Войти в аккаунт...</Link>;
-        const main = <Link to="/">На главную...</Link>;
+        const logout = <Link to="/logout" className="topage"> Выйти из аккаунта...</Link>;
+        const register = isRegistrationAllowed && <Link to="/register" className="topage">Создать аккаунт...</Link>;
+        const login = <Link to="/login" className="topage">Войти в аккаунт...</Link>;
+        const main = <Link to="/" className="topage">На главную...</Link>;
 
         this.swither = {
             "/login": <> {main} {register} <br/><br/> </>,

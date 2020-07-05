@@ -48,18 +48,23 @@ class PostEditor extends Component {
             isSendingNow: true
         });
     };
+    createPreview = (bodyHtml, maxlength) => {
+        let preview = bodyHtml.replace(/<[^>]*>/g, ' ').replace(/[\s\t]+/g, ' ').trim();
+        const nextSpace = preview.indexOf(" ", maxlength);
+        preview = ~nextSpace ? preview.slice(0, nextSpace) + " ..." : preview.length > maxlength ? preview.slice(0, maxlength) + " ..." : preview;
+        return preview;
+    }
     onSubmit = async (event) => {
         event.preventDefault();
         this.onStartSending();
         const titleRef = this.title.current;
         const bodyRef = this.body.current;
         try {
-            let preview = bodyRef.getEditorContents().replace(/<[^>]*>/g, ' ').replace(/[\s\t]+/g, ' ').trim();
-            const nextSpace = preview.indexOf(" ", 500);
-            preview = ~nextSpace ? preview.slice(0, nextSpace) + " ..." : preview;
+            const bodyHtml = bodyRef.getEditorContents();
+            const preview = this.createPreview(bodyHtml, 500);
             await this.props.onSubmit(
                 titleRef.value,
-                bodyRef.getEditorContents(),
+                bodyHtml,
                 preview
             );
         } catch (error) {

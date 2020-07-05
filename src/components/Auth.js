@@ -16,12 +16,12 @@ class AuthProvider extends Component {
     constructor(props) {
         super(props);
         this.unsubscribeAuth = null;
-        this.unsubscribeposts = null;
+        this.unsubscribeAdditionalUserInfo = null;
         this.isFirstCalled = false;
     }
     componentWillUnmount() {
         this.unsubscribeAuth();
-        this.unsubscribeposts();
+        this.unsubscribeAdditionalUserInfo();
     }
 
     state = {
@@ -55,7 +55,7 @@ class AuthProvider extends Component {
                     likes: new Set()
                 });
             } else {
-                this.unsubscribeposts = usersStore.doc(user.uid).onSnapshot(snapshot => {
+                this.unsubscribeAdditionalUserInfo = usersStore.doc(user.uid).onSnapshot(snapshot => {
                     if (!snapshot.exists) return;
                     const { isAdminOnlyForGUI, likes } = snapshot.data();
                     this.setState({
@@ -68,7 +68,6 @@ class AuthProvider extends Component {
         });
     }
     render() {
-      
         return (
             <AuthContext.Provider
                 value={{
@@ -76,7 +75,7 @@ class AuthProvider extends Component {
                     isFirstCalled: this.isFirstCalled,
                     changeLikeState: this.changeLikeState
                 }}
-                children={this.props.children}
+                children={ this.props.children }
             />
         );
     }

@@ -14,6 +14,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 
 export const postsStore = firebase.firestore().collection("posts");
+export const postsBodysStore = firebase.firestore().collection("postsBodys");
 export const usersStore = firebase.firestore().collection("users");
 export const FieldValue = firebase.firestore.FieldValue;
 export default app;

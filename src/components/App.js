@@ -6,7 +6,7 @@ import LoginRoute from "./LoginPage";
 import RegisterRoute from "./RegisterPage";
 import PublicRoute from "./PublicPage";
 import LogoutRoute from "./LogoutPage";
-import FullScreenPostRoute from "./FullScreenPost";
+import SpecificPostPageRoute from "./SpecificPostPage";
 import AdminPage from "./AdminPage";
 import AuthorizedPage from "./AuthorizedPage";
 import Menu from "./Menu";
@@ -27,7 +27,7 @@ class App extends Component {
                         <Route exact path="/home">
                             <AuthorizedPage/>
                         </Route>
-                        <FullScreenPostRoute path="/post/:postId"/>
+                        <SpecificPostPageRoute path="/post/:postId"/>
                         <PublicRoute exact path="/"/>
                         <Route path="*">
                             <Redirect to="/"/>

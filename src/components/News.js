@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { postsStore } from "../firebase";
-import PostManager from "./PostManager";
 import { AuthContext } from "./Auth";
+import NewsPagePost from "./NewsPagePost";
 
 class News extends Component {
     static contextType = AuthContext;
@@ -29,10 +29,9 @@ class News extends Component {
         return this.state.posts.map((postRef) => {
             return(
                 <Fragment key={ postRef.id }>
-                    <PostManager
+                    <NewsPagePost
                         id={ postRef.id }
-                        isExpanded={ false }
-                        { ...postRef.data() }
+                        post={ postRef.data() }
                     />
                     <hr/>
                 </Fragment>
@@ -43,10 +42,13 @@ class News extends Component {
         return (<>
             <h1>Новости: </h1>
             <br/>
-            { this.state.isDownloading && !this.context.isFirstCalled
+            { this.state.isDownloading
                 ? <h3>Новости загружаются...</h3>
                 : this.state.posts.length
-                    ? this.renderPosts()
+                    ? ( !this.context.isFirstCalled
+                        ? <h1> Ожидание входа </h1>
+                        : this.renderPosts()
+                    )
                     : <h3>Новостей нет</h3>
             }
         </>);
